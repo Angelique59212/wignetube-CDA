@@ -18,6 +18,7 @@ class Role extends AbstractEntity
 
     /**
      * @param string|null $role_name
+     * @return Role
      */
     public function setRoleName(?string $role_name): self
     {

@@ -20,6 +20,7 @@ class Commentary extends AbstractEntity
 
     /**
      * @param string $content
+     * @return Commentary
      */
     public function setContent(string $content): self
     {
@@ -37,6 +38,7 @@ class Commentary extends AbstractEntity
 
     /**
      * @param User $user
+     * @return Commentary
      */
     public function setUser(User $user): self
     {
@@ -54,6 +56,7 @@ class Commentary extends AbstractEntity
 
     /**
      * @param Video $video
+     * @return Commentary
      */
     public function setVideo(Video $video): self
     {

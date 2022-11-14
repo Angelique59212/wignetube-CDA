@@ -20,6 +20,7 @@ class Video extends AbstractEntity
 
     /**
      * @param string $title
+     * @return Video
      */
     public function setTitle(string $title): self
     {
@@ -37,6 +38,7 @@ class Video extends AbstractEntity
 
     /**
      * @param string $content
+     * @return Video
      */
     public function setContent(string $content): self
     {
@@ -54,6 +56,7 @@ class Video extends AbstractEntity
 
     /**
      * @param User $user
+     * @return Video
      */
     public function setUser(User $user): self
     {

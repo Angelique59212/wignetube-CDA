@@ -3,7 +3,7 @@
 namespace App\Model\Entity;
 
 use AbstractEntity;
-use Couchbase\Role;
+
 
 class User extends AbstractEntity
 {
@@ -25,6 +25,7 @@ class User extends AbstractEntity
 
     /**
      * @param string $validationKey
+     * @return User
      */
     public function setValidationKey(string $validationKey): self
     {
@@ -42,6 +43,7 @@ class User extends AbstractEntity
 
     /**
      * @param bool $valid
+     * @return User
      */
     public function setValid(bool $valid): self
     {
@@ -59,6 +61,7 @@ class User extends AbstractEntity
 
     /**
      * @param string $email
+     * @return User
      */
     public function setEmail(string $email): self
     {
@@ -76,6 +79,7 @@ class User extends AbstractEntity
 
     /**
      * @param string $firstname
+     * @return User
      */
     public function setFirstname(string $firstname): self
     {
@@ -93,6 +97,7 @@ class User extends AbstractEntity
 
     /**
      * @param string $lastname
+     * @return User
      */
     public function setLastname(string $lastname): self
     {
@@ -110,6 +115,7 @@ class User extends AbstractEntity
 
     /**
      * @param string $password
+     * @return User
      */
     public function setPassword(string $password): self
     {
@@ -127,6 +133,7 @@ class User extends AbstractEntity
 
     /**
      * @param Role $role
+     * @return User
      */
     public function setRole(Role $role): self
     {
