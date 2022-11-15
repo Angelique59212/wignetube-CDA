@@ -71,6 +71,17 @@ class UserManager
     }
 
     /**
+     * @param string $mail
+     * @return bool
+     */
+    public static function mailExists(string $mail): bool
+    {
+        $result = Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE email = \"$mail\"");
+        return $result ? $result->fetch()['cnt'] : 0;
+    }
+
+
+    /**
      * @param int $id
      * @return bool
      */
@@ -178,6 +189,17 @@ class UserManager
         $stmt->bindValue('date_add', $date->format('Y-m-d H:i:s'));
 
         return $stmt->execute();
+    }
+
+    /**
+     * Delete expired password reset request token.
+     * @param string $mail
+     * @param string $token
+     * @return void
+     */
+    public static function deleteUserResetPasswordEntry(string $mail, string $token)
+    {
+
     }
 
     public static function getResetPasswordTokenData(string $token): ?array
