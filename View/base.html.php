@@ -35,7 +35,7 @@ getMessage('success');
             <i class="fa-solid fa-bars"></i>
         </div><?php
 
-        if (isset($_SESSION['user'])) { ?>
+        if (!isset($_SESSION['user'])) { ?>
             <a href="/?c=home">Home</a>
             <a href="/?c=user&a=login">Login</a>
             <a href="/?c=user&a=register">Inscription</a>
@@ -61,7 +61,7 @@ getMessage('success');
     <h1>Wignetube</h1>
 </div>
 
-
+<main><?= $html ?></main>
 
 <footer>
     <div id="bottom">
