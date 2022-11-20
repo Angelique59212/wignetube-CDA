@@ -16,6 +16,7 @@ require __DIR__ .'/Model/Manager/VideoManager.php';
 
 
 require __DIR__ .'/Controller/AbstractController.php';
+require __DIR__ .'/Controller/HomeController.php';
 require __DIR__ .'/Controller/ErrorController.php';
 require __DIR__ .'/Controller/UserController.php';
 require __DIR__ .'/Controller/VideoController.php';

@@ -46,7 +46,7 @@ class VideoManager {
         $stmt->bindValue(':user_fk', $video->getUser()->getId());
 
         $result = $stmt->execute();
-        $video->setId(\Connect::dbConnect()->lastInsertId());
+        $video->setId(Connect::dbConnect()->lastInsertId());
         return $result;
     }
 
