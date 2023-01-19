@@ -39,12 +39,12 @@ getMessage('success');
             <a href="/?c=home">Home</a>
             <a href="/?c=user&a=login">Login</a>
             <a href="/?c=user&a=register">Inscription</a>
-            <a href="/?c=video">Vidéos</a><?php
+            <a href="/?c=video&a=list-video">Vidéos</a><?php
         }
         else { ?>
             <a href="/?c=home">Home</a>
             <a href="/?c=user&a=show-user">Mon profil</a>
-            <a href="/?c=video">Vidéo</a><?php
+            <a href="/?c=video&a=list-video">Vidéo</a><?php
 
             if (AbstractController::verifyRole()) { ?>
                 <a href="/index.php?c=video&a=add-video">Ajouter une video</a> <?php

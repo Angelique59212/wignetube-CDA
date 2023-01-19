@@ -17,9 +17,9 @@ class RoleManager
     public static function getRoleByUser(User $user) : Role
     {
         $roleId= Connect::dbConnect()->query("SELECT * FROM " . UserManager::TABLE . "WHERE id=" . $user->getId());
-        $roleId = $roleId->fetch()['role_fk'];
+        $roleId = $roleId->fetch()['mdf58_role_fk'];
 
-        $query = Connect::dbConnect()->query("SELECT role_fk FROM " . UserManager::TABLE . "WHERE id=" . $user->getId());
+        $query = Connect::dbConnect()->query("SELECT mdf58_role_fk FROM " . UserManager::TABLE . "WHERE id=" . $user->getId());
         $roleData = $query->fetch();
 
         return (new Role())

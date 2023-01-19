@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use AbstractController;
+use App\Controller\AbstractController;
 
 class ConfidentialityController extends AbstractController
 {

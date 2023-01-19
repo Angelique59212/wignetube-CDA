@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use AbstractController;
+use App\Controller\AbstractController;
 use App\Model\Entity\Role;
 use App\Model\Entity\User;
 use App\Model\Manager\RoleManager;

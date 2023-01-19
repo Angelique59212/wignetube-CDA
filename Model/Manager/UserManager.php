@@ -98,16 +98,17 @@ class UserManager
     public static function addUser(User &$user): bool
     {
         $stmt = Connect::dbConnect()->prepare("
-            INSERt INTO ". self::TABLE . " (validation_key, email, firstname, lastname, password, role_fk)
-            VALUES (:validation_key, :email, :firstname, :lastname, :password, :role_fk)
+            INSERt INTO ". self::TABLE . " (validation_key,valid, email, firstname, lastname, password, mdf58_role_fk)
+            VALUES (:validation_key, :valid, :email, :firstname, :lastname, :password, :mdf58_role_fk)
         ");
 
         $stmt->bindValue(':validation_key', $user->getValidationKey());
+        $stmt->bindValue(':valid', 0);
         $stmt->bindValue(':email', $user->getEmail());
         $stmt->bindValue(':firstname', $user->getFirstname());
         $stmt->bindValue(':lastname', $user->getLastname());
         $stmt->bindValue(':password', $user->getPassword());
-        $stmt->bindValue(':role_fk', $user->getRole()->getId());
+        $stmt->bindValue(':mdf58_role_fk', 1);
 
         $result = $stmt->execute();
         $user->setId(Connect::dbConnect()->lastInsertId());

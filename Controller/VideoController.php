@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Controller;
+
+use App\Controller\AbstractController;
 use App\Model\Entity\Video;
 use App\Model\Manager\VideoManager;
 
