@@ -9,23 +9,42 @@ use Connect;
 class RoleManager
 {
     public const TABLE = 'mdf58_role';
+    public const ROLE_USER = 'user';
+
+    public static function getAll(): array
+    {
+        $role = [];
+        $query = Connect::dbConnect()->query("SELECT * FROM " . self::TABLE);
+        if ($query) {
+            foreach ($query->fetchAll() as $roleData) {
+                $role[] = (new Role())
+                    ->setId($roleData['id'])
+                    ->setRoleName($roleData['role_name']);
+            }
+        }
+        return $role;
+    }
 
     /**
      * @param User $user
-     * @return Role
+     * @return array
      */
-    public static function getRoleByUser(User $user) : Role
+    public static function getRoleByUser(User $user) : array
     {
-        $roleId= Connect::dbConnect()->query("SELECT * FROM " . UserManager::TABLE . "WHERE id=" . $user->getId());
-        $roleId = $roleId->fetch()['mdf58_role_fk'];
-
-        $query = Connect::dbConnect()->query("SELECT mdf58_role_fk FROM " . UserManager::TABLE . "WHERE id=" . $user->getId());
-        $roleData = $query->fetch();
-
-        return (new Role())
-            ->setId($roleData['id'])
-            ->setRoleName($roleData['role_name']);
+        $role = [];
+        $roleId = Connect::dbConnect()->query("
+            SELECT * FROM " . UserManager::TABLE . "WHERE id IN (SELECT mdf58_role_fk FROM " . self::TABLE . " WHERE user_fk =  {user->getId()})
+            ");
+        if ($roleId) {
+            foreach ($roleId->fetchAll() as $roleData) {
+                $role[] = (new Role())
+                    ->setId($roleData['id'])
+                    ->setRoleName($roleData['role_name']);
+            }
+        }
+        return $role;
     }
+
 
     /**
      * @param string $roleName

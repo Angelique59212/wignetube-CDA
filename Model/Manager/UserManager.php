@@ -10,6 +10,7 @@ use Exception;
 class UserManager
 {
     public const TABLE = 'mdf58_user';
+    public const USER_ROLE = 'user';
     public const RESET_PASSWORD_TABLE = 'mdf58_resetpassword';
 
 
@@ -112,8 +113,15 @@ class UserManager
 
         $result = $stmt->execute();
         $user->setId(Connect::dbConnect()->lastInsertId());
+        if ($result) {
+            $role = RoleManager::getRoleByName((string)RoleManager::ROLE_USER);
+            $resultRole = Connect::dbConnect()->exec("
+                INSERT INTO " . self::USER_ROLE . " (mdf58_user_fk, mdf58_role_fk) 
+                VALUES (".$user->getId() .", " .$role->getId() .")
+            ");
+        }
 
-        return $result;
+        return $result && $resultRole;
     }
 
     /**
@@ -162,7 +170,7 @@ class UserManager
     public static function getUserByMail(string $mail) : ?User
     {
         $stmt = Connect::dbConnect()->prepare("SELECT * FROM " . self::TABLE . " WHERE email = :email LIMIT 1");
-        $stmt->bindParam(":email", $email);
+        $stmt->bindParam(":email", $mail);
         $result = $stmt->execute();
         if ($result && $data = $stmt->fetch()) {
             return self::makeUser($data);
